@@ -1,5 +1,10 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
+
+from sidecar import Sidecar
+from ipywidgets import IntSlider
+from ipyleaflet import Map, basemaps, basemap_to_tiles,  Marker
+from IPython.display import display
 import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
@@ -7,7 +12,10 @@ import math
 import traci
 import quadprog
 import pickle
+import time
+import webbrowser
 
+from energetica2030.settings import BASE_DIR
 from energetica2030.settings import UTILS_PATH
 from energetica2030.settings import STATIC_OPERATION_PATH
 
@@ -835,8 +843,8 @@ def operationExecution(step, m_list, ch_ship, route):
     step = step
     m_list = m_list
     ch_ship = ch_ship
-    #traci.start(["sumo-gui", "-c", UTILS_PATH+"/osm1.sumocfg", "--start"])
-    traci.start(["sumo","-c", UTILS_PATH+"/osm1.sumocfg", "--quit-on-end"])
+    traci.start(["sumo-gui", "-c", UTILS_PATH+"/osm1.sumocfg", "--start"])
+    #traci.start(["sumo","-c", UTILS_PATH+"/osm1.sumocfg", "--quit-on-end"])
     parkingID = ["m1","m2"]
     parkingID_1 = ["372051587#0", "-111215443#2"]
     motoNumber = [10,5]
@@ -1199,6 +1207,14 @@ def operationExecution(step, m_list, ch_ship, route):
         velocidad_ship.append(traci.vehicle.getSpeed('ship_0'))
         step += 1
 
+        #Drawing the map
+        m = Map(center=(9.2347399083158, -74.74300089441398),zoom=13, basemap=basemaps.OpenStreetMap.Mapnik)
+        x_on, y_at = traci.vehicle.getPosition('moto_0')
+        l_on, l_at = traci.simulation.convertGeo(x_on, y_at)
+        m.add_layer(Marker(location=(l_at, l_on)))
+        m.save(STATIC_OPERATION_PATH+'mapa.html')
+        time.sleep(0.1)
+        m.remove_layer(m.layers[1])
 
     a=1
     operationGraphics()

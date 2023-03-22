@@ -1,0 +1,10 @@
+Django
+matplotlib
+pandas
+numpy
+traci
+quadprog
+sidecar
+ipywidgets
+ipyleaflet
+IPython

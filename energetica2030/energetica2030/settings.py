@@ -22,7 +22,7 @@ STATIC_OPERATION_PATH = join(BASE_DIR, 'operation/static/operation/')
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = ''
+SECRET_KEY = 'django-insecure-vt3xc+7j0p+55vaoh5u&d+r()gvm7kcegr58v5=(jo2ip6-z*8'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
