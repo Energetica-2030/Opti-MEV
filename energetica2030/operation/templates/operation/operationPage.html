@@ -10,20 +10,25 @@ Operación
 
 {% block content %}
 <div class="container">
-    <div class="iframe-container" id="map">
-        <iframe class="iframe" src="{% static 'operation/mapa.html' %}"></iframe>
+    <div class="map-container" id="map-container">
+        <div class="map" id="map"></div>
     </div>
+    
     <div class="selection-container">
-        <form class="form form--selection" action="" method="get">
+        <form class="form form--selectionRoute" action="">
+
+            <h3 class="form__title">Selecciona el municipio</h3>
+            <select name="selectCity" class="form__select" id="city">
+                <option value="0">Selecciona una opción</option>
+                <option value="1">Magangué</option>
+                <option value="2">Sincelejo</option>
+            </select>
+
             <h3 class="form__title">Selecciona la ruta</h3>
             <select name="selectRoute" class="form__select" id="route">
                 <option value="0">Selecciona una opción</option>
-                <option value="1">Magangué-Pinillos</option>
-                <option value="2">Magangué-Yati</option>
-                <option value="3">Terminal noroccidental-Terminal fluvial</option>
-                <option value="4">Barrio Cristo prado-Clínica de los ríos</option>
-                <option value="5">Barrio San Pablo-Parque Santa Rita</option>
             </select>
+
             <button id="selectButton" type="submit">Seleccionar</button>
         </form>
 	</div>
@@ -59,4 +64,5 @@ Operación
 {% endblock %}
 {% block scripts%}
 <script src="{% static 'operation/script.js' %}"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjXlEpe2ImTR5vJUGYtkGgGaJD6p0W7XI"></script>
 {% endblock %}

@@ -1,10 +1,7 @@
-Django
+django
 matplotlib
 pandas
 numpy
 traci
 quadprog
-sidecar
-ipywidgets
-ipyleaflet
-IPython
+channels

@@ -3,16 +3,15 @@
     width: 60%;
 }
 
-.iframe-container{
-    margin: 2em 0;
-    height: 400px;
-    width: 100%;
+.map-container{
+    height: 500px;
+    margin: 2em auto;
     display: none;
 }
 
-.iframe{
-    width: 100%;
+.map{
     height: 100%;
+    width: 100%;   
 }
 
 .selection-container, .graphicSet-container{
