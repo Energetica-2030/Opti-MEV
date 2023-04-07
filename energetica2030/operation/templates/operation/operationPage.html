@@ -10,7 +10,7 @@ Operación
 
 {% block content %}
 <div class="container">
-    <div class="map-container" id="map-container">
+    <div class="map-container hidden" id="map-container">
         <div class="map" id="map"></div>
     </div>
     
@@ -32,34 +32,17 @@ Operación
             <button id="selectButton" type="submit">Seleccionar</button>
         </form>
 	</div>
-    {% if graphics %}
-    <div class="graphicSet-container">
-        <div class="graphic-container graphic-container--fig1">
-            <img class="graphic-container__image graphic-container__image--fig1" src="{% static 'operation/fig1.png' %}">
-        </div>
-        <div class="graphic-container graphic-container--fig2">
-            <img class="graphic-container__image graphic-container__image--fig2" src="{% static 'operation/fig2.png' %}">
-        </div>
-        <div class="graphic-container graphic-container--fig3">
-            <img class="graphic-container__image graphic-container__image--fig3" src="{% static 'operation/fig3.png' %}">
-        </div>
-        <div class="graphic-container graphic-container--fig4">
-            <img class="graphic-container__image graphic-container__image--fig4" src="{% static 'operation/fig4.png' %}">
-        </div>
-        <div class="graphic-container graphic-container--fig5">
-            <img class="graphic-container__image graphic-container__image--fig5" src="{% static 'operation/fig5.png' %}">
-        </div>
-        <div class="graphic-container graphic-container--fig5">
-            <img class="graphic-container__image graphic-container__image--fig5" src="{% static 'operation/fig6.png' %}">
-        </div>
-        <div class="graphic-container graphic-container--fig5">
-            <img class="graphic-container__image graphic-container__image--fig5" src="{% static 'operation/fig7.png' %}">
-        </div>
-        <div class="graphic-container graphic-container--fig5">
-            <img class="graphic-container__image graphic-container__image--fig5" src="{% static 'operation/fig8.png' %}">
-        </div>
+</div>
+<div class="modal-container hidden" id="modal-container" >
+    <div class="modal" id="modal">
+        <p class="modal__text">
+            La simulación ha finalizado
+        </p>
+        <p class="modal__text">
+            Para ver los resultados presione el botón
+        </p>
+        <a id="modal__link" href="{% url 'operation:resultsPage' 0 %}"><button class="modal__button">Ver resultados</button></a>
     </div>
-    {% endif %}
 </div>
 {% endblock %}
 {% block scripts%}

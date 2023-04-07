@@ -5,3 +5,6 @@ from django.contrib.auth.decorators import login_required
 #This function renders the operation page
 def operationPage(request):
     return render(request, 'operation/operationPage.html', context={})
+
+def resultsPage(request, city):
+    return render(request, 'operation/resultsPage.html', context={'city':city})

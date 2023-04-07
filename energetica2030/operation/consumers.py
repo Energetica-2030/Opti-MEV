@@ -501,16 +501,16 @@ class MagangueTrip():
         Np = 2 #horizonte de predicción   
         tp = 24#tiempo de simulación horas
         Nc = 3 #Horizonte de control = # de entradas (3 entradas) 
-        radiationa = pd.read_csv(UTILS_PATH+'/GHI1.csv', sep=',', header=None, index_col=None, usecols=[7])
-        radiationb = pd.read_csv(UTILS_PATH+'/GHI2.csv', sep=',', header=None, index_col=None, usecols=[7])
-        radiationc = pd.read_csv(UTILS_PATH+'/GHI3.csv', sep=',', header=None, index_col=None, usecols=[7])
+        radiationa = pd.read_csv(UTILS_PATH+'GHI1.csv', sep=',', header=None, index_col=None, usecols=[7])
+        radiationb = pd.read_csv(UTILS_PATH+'GHI2.csv', sep=',', header=None, index_col=None, usecols=[7])
+        radiationc = pd.read_csv(UTILS_PATH+'GHI3.csv', sep=',', header=None, index_col=None, usecols=[7])
 
         radiation = pd.concat([radiationa, radiationb, radiationc], ignore_index=True)
 
-        with open(UTILS_PATH+"/DATA.pickle", "rb") as f:
+        with open(UTILS_PATH+"DATA.pickle", "rb") as f:
             undia = pickle.load(f)
 
-        with open(UTILS_PATH+"/price.pickle", "rb") as f:
+        with open(UTILS_PATH+"price.pickle", "rb") as f:
             price = pickle.load(f)
 
         Dem = np.zeros(tp+Np-1)
@@ -826,7 +826,7 @@ class MagangueTrip():
         ax1.set_title("Velocidad de la motocicleta")
         ax1.set_xlabel("Tiempo [s]")
         ax1.set_ylabel("Velocidad [m/s]")
-        plt.savefig(STATIC_OPERATION_PATH+'fig1.png')
+        plt.savefig(STATIC_OPERATION_PATH+'media/fig1.png')
 
         fig, axs = plt.subplots(2, 1)
         axs[0].plot(tmp[0:2000], motOBJ_dic['moto_0'].Energy[0:2000])
@@ -838,7 +838,7 @@ class MagangueTrip():
         axs[1].set_xlabel("Tiempo [s]")
         axs[1].set_ylabel("Potencia [Wh]")
         plt.tight_layout()
-        plt.savefig(STATIC_OPERATION_PATH+'fig2.png')
+        plt.savefig(STATIC_OPERATION_PATH+'media/fig2.png')
 
         fig, (ax1,ax2) = plt.subplots(2)
         ax1.plot(tmp[0:2000], motOBJ_dic['moto_0'].combus[0:2000])
@@ -850,7 +850,7 @@ class MagangueTrip():
         ax2.set_xlabel("Tiempo [s]")
         ax2.set_ylabel("Potencia [Wh]")
         plt.tight_layout()
-        plt.savefig(STATIC_OPERATION_PATH+'fig3.png')
+        plt.savefig(STATIC_OPERATION_PATH+'media/fig3.png')
 
         tmp = range(len(shipOBJ_dic['ship_0'].S_E))
 
@@ -868,7 +868,7 @@ class MagangueTrip():
         axs[2].set_xlabel("Tiempo [s]")
         axs[2].set_ylabel("Potencia [W]")
         plt.tight_layout()
-        plt.savefig(STATIC_OPERATION_PATH+'fig4.png')
+        plt.savefig(STATIC_OPERATION_PATH+'media/fig4.png')
 
 
         tmp = range(len(Demandas))
@@ -878,7 +878,7 @@ class MagangueTrip():
         ax1.set_title("Demandas")
         ax1.set_xlabel("Tiempo [s]")
         ax1.set_ylabel("Energía[Wh]")
-        plt.savefig(STATIC_OPERATION_PATH+'fig5.png')
+        plt.savefig(STATIC_OPERATION_PATH+'media/fig5.png')
 
         fig, (ax1) = plt.subplots(1)
         ax1.plot(np.arange(0,len(r8),1), r8, "#ffd343", label = "Precio")
@@ -886,7 +886,7 @@ class MagangueTrip():
         ax1.legend(loc = 'best', fontsize = 10)
         ax1.set_xlabel('Tiempo [h]')
         ax1.set_ylabel('Precio [USD]')
-        plt.savefig(STATIC_OPERATION_PATH+'fig6.png')
+        plt.savefig(STATIC_OPERATION_PATH+'media/fig6.png')
 
         fig, (ax1, ax2) = plt.subplots(2)
         ax1.plot(tim_2, r2, "#ffd343", label = "Ganancia")
@@ -904,7 +904,7 @@ class MagangueTrip():
         ax2.set_xlabel('Tiempo [h]')
         ax2.set_ylabel('Energía [W]')
         plt.tight_layout()
-        plt.savefig(STATIC_OPERATION_PATH+'fig7.png')
+        plt.savefig(STATIC_OPERATION_PATH+'media/fig7.png')
 
 
         fig, (ax1, ax2) = plt.subplots(2)
@@ -922,7 +922,7 @@ class MagangueTrip():
         ax2.set_xlabel('Tiempo [h]')
         ax2.set_ylabel('Demanda [W]')
         plt.tight_layout()
-        plt.savefig(STATIC_OPERATION_PATH+'fig8.png')
+        plt.savefig(STATIC_OPERATION_PATH+'media/fig8.png')
 
 class SincelejoTrip():
     class moto:
@@ -1260,17 +1260,17 @@ class SincelejoTrip():
         Np = 2 #horizonte de predicción   
         tp = 24#tiempo de simulación horas
         Nc = 3 #Horizonte de control = # de entradas (3 entradas) 
-        radiationa = pd.read_csv('GHI1.csv', sep=',', header=None, index_col=None, usecols=[7]);
-        radiationb = pd.read_csv('GHI2.csv', sep=',', header=None, index_col=None, usecols=[7]);
-        radiationc = pd.read_csv('GHI3.csv', sep=',', header=None, index_col=None, usecols=[7]);
+        radiationa = pd.read_csv(UTILS_PATH+'GHI1.csv', sep=',', header=None, index_col=None, usecols=[7]);
+        radiationb = pd.read_csv(UTILS_PATH+'GHI2.csv', sep=',', header=None, index_col=None, usecols=[7]);
+        radiationc = pd.read_csv(UTILS_PATH+'GHI3.csv', sep=',', header=None, index_col=None, usecols=[7]);
 
         radiation = pd.concat([radiationa, radiationb, radiationc], ignore_index=True)
 
 
-        with open("price.pickle", "rb") as f:
+        with open(UTILS_PATH+"price.pickle", "rb") as f:
             price = pickle.load(f)
 
-        with open("DATA.pickle", "rb") as f:
+        with open(UTILS_PATH+"DATA.pickle", "rb") as f:
             undia = pickle.load(f)
 
         
@@ -1564,7 +1564,7 @@ class SincelejoTrip():
         ax1.set_title("Velocidad de la motocicleta")
         ax1.set_xlabel("Tiempo [s]")
         ax1.set_ylabel("Velocidad [m/s]")
-        plt.savefig(STATIC_OPERATION_PATH+'fig1.png')
+        plt.savefig(STATIC_OPERATION_PATH+'media/fig1.png')
 
         fig, axs = plt.subplots(2, 1)
         axs[0].plot(tmp[0:2000], motOBJ_dic['moto_0'].Energy[0:2000])
@@ -1576,7 +1576,7 @@ class SincelejoTrip():
         axs[1].set_xlabel("Tiempo [s]")
         axs[1].set_ylabel("Potencia [Wh]")
         plt.tight_layout()
-        plt.savefig(STATIC_OPERATION_PATH+'fig2.png')
+        plt.savefig(STATIC_OPERATION_PATH+'media/fig2.png')
 
         fig, (ax1,ax2) = plt.subplots(2)
         ax1.plot(tmp[0:2000], motOBJ_dic['moto_0'].combus[0:2000])
@@ -1588,7 +1588,7 @@ class SincelejoTrip():
         ax2.set_xlabel("Tiempo [s]")
         ax2.set_ylabel("Potencia [Wh]")
         plt.tight_layout()
-        plt.savefig(STATIC_OPERATION_PATH+'fig3.png')
+        plt.savefig(STATIC_OPERATION_PATH+'media/fig3.png')
 
 
 
@@ -1599,7 +1599,7 @@ class SincelejoTrip():
         ax1.set_title("Demandas")
         ax1.set_xlabel("Tiempo [s]")
         ax1.set_ylabel("Energía[Wh]")
-        plt.savefig(STATIC_OPERATION_PATH+'fig4.png')
+        plt.savefig(STATIC_OPERATION_PATH+'media/fig4.png')
 
         fig, (ax1) = plt.subplots(1)
         ax1.plot(np.arange(0,len(r8),1), r8, "#ffd343", label = "Precio")
@@ -1607,7 +1607,7 @@ class SincelejoTrip():
         ax1.legend(loc = 'best', fontsize = 10)
         ax1.set_xlabel('Tiempo [h]')
         ax1.set_ylabel('Precio [USD]')
-        plt.savefig(STATIC_OPERATION_PATH+'fig5.png')
+        plt.savefig(STATIC_OPERATION_PATH+'media/fig5.png')
 
         fig, (ax1, ax2) = plt.subplots(2)
         ax1.plot(tim_2, r2, "#ffd343", label = "Ganancia")
@@ -1625,7 +1625,7 @@ class SincelejoTrip():
         ax2.set_xlabel('Tiempo [h]')
         ax2.set_ylabel('Energía [W]')
         plt.tight_layout()
-        plt.savefig(STATIC_OPERATION_PATH+'fig6.png')
+        plt.savefig(STATIC_OPERATION_PATH+'media/fig6.png')
 
 
         fig, (ax1, ax2) = plt.subplots(2)
@@ -1643,15 +1643,15 @@ class SincelejoTrip():
         ax2.set_xlabel('Tiempo [h]')
         ax2.set_ylabel('Demanda [W]')
         plt.tight_layout()
-        plt.savefig(STATIC_OPERATION_PATH+'fig7.png')
+        plt.savefig(STATIC_OPERATION_PATH+'media/fig7.png')
 
 class mapConsumer(WebsocketConsumer):
 
     def simulationMagangue(self, step, m_list, ch_ship, route):
         magTrip = MagangueTrip()
         step = step
-        #traci.start(["sumo-gui", "-c", UTILS_PATH+"/Magangue/osm1.sumocfg", "--start"])
-        traci.start(["sumo","-c", UTILS_PATH+"/Magangue/osm1.sumocfg", "--quit-on-end"])
+        #traci.start(["sumo-gui", "-c", UTILS_PATH+"Magangue/osm1.sumocfg", "--start"])
+        traci.start(["sumo","-c", UTILS_PATH+"Magangue/osm1.sumocfg", "--quit-on-end"])
 
         parkingID = ["m1","m2"]
         parkingID_1 = ["372051587#0", "-111215443#2"]
@@ -2018,7 +2018,8 @@ class mapConsumer(WebsocketConsumer):
             l_on, l_at = traci.simulation.convertGeo(x_on, x_at)
             self.send(text_data=json.dumps({
                 'lon':l_on,
-                'lat':l_at
+                'lat':l_at,
+                'finished':False
             }))
 
         a=1
@@ -2028,9 +2029,8 @@ class mapConsumer(WebsocketConsumer):
     def simulationSincelejo(self, step, m_list, route):
         sinTrip = SincelejoTrip()
         step = step
-        traci.start(["sumo-gui", "-c",UTILS_PATH+"/Sincelejo/sincel.sumocfg", "--start"])
-        #traci.start(["sumo","-c", UTILS_PATH+"/Sincelejo/sincel.sumocfg", "--start"])
-        print('MELLOOOOO')
+        #traci.start(["sumo-gui", "-c",UTILS_PATH+"Sincelejo/sincel.sumocfg", "--quit-on-end"])
+        traci.start(["sumo","-c", UTILS_PATH+"Sincelejo/sincel.sumocfg", "--quit-on-end"])
         parkingID = ["m1","m2"]
         parkingID_1 = ["87712504#4", "89152987#7"]
         motoNumber = [10,5]
@@ -2307,7 +2307,8 @@ class mapConsumer(WebsocketConsumer):
             l_on, l_at = traci.simulation.convertGeo(x_on, x_at)
             self.send(text_data=json.dumps({
                 'lon':l_on,
-                'lat':l_at
+                'lat':l_at,
+                'finished':False
             }))
         a=1
         sinTrip.operationGraphics()
@@ -2336,3 +2337,7 @@ class mapConsumer(WebsocketConsumer):
             self.simulationMagangue(step, m_list, ch_ship, int(route))
         else:
             self.simulationSincelejo(step, m_list, int(route))
+
+        self.send(text_data=json.dumps({
+            'finished':True
+        }))

@@ -4,4 +4,4 @@ pandas
 numpy
 traci
 quadprog
-channels
+channels==3.0.5

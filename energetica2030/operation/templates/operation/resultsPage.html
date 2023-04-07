@@ -1,0 +1,45 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'operation/style.css' %}">
+{% endblock %}
+
+{% block title %}
+    Resultados de simulación
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="graphic-set">
+        <h3 class="graphic-set__title">Resultados de la simulación</h3>
+        <div class="graphic-container graphic-container--fig1">
+            <img class="graphic-container__image graphic-container__image--fig1" src="{% static 'operation/media/fig1.png' %}" alt="Gráfica 1">
+        </div>
+        <div class="graphic-container graphic-container--fig2">
+            <img class="graphic-container__image graphic-container__image--fig2" src="{% static 'operation/media/fig2.png' %}" alt="Gráfica 2">
+        </div>
+        <div class="graphic-container graphic-container--fig3">
+            <img class="graphic-container__image graphic-container__image--fig3" src="{% static 'operation/media/fig3.png' %}" alt="Gráfica 3">
+        </div>
+        <div class="graphic-container graphic-container--fig4">
+            <img class="graphic-container__image graphic-container__image--fig4" src="{% static 'operation/media/fig4.png' %}" alt="Gráfica 4">
+        </div>
+        <div class="graphic-container graphic-container--fig5">
+            <img class="graphic-container__image graphic-container__image--fig5" src="{% static 'operation/media/fig5.png' %}" alt="Gráfica 5">
+        </div>
+        <div class="graphic-container graphic-container--fig5">
+            <img class="graphic-container__image graphic-container__image--fig5" src="{% static 'operation/media/fig6.png' %}" alt="Gráfica 6">
+        </div>
+        <div class="graphic-container graphic-container--fig5">
+            <img class="graphic-container__image graphic-container__image--fig5" src="{% static 'operation/media/fig7.png' %}" alt="Gráfica 7">
+        </div>
+        {% if city == 1%}
+        <div class="graphic-container graphic-container--fig5">
+            <img class="graphic-container__image graphic-container__image--fig5" src="{% static 'operation/media/fig8.png' %}" alt="Gráfica 8">
+        </div>
+        {% endif %}
+    </div>
+    <a href="{% url 'operation:operationPage' %}"><button class="back__button">Volver</button></a>
+</div>
+{% endblock %}

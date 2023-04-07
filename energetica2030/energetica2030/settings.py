@@ -15,7 +15,7 @@ from os.path import join
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-UTILS_PATH = join(BASE_DIR, 'operation/utils')
+UTILS_PATH = join(BASE_DIR, 'operation/utils/')
 STATIC_OPERATION_PATH = join(BASE_DIR, 'operation/static/operation/')
 
 # Quick-start development settings - unsuitable for production
