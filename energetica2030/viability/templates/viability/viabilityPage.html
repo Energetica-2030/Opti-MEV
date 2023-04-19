@@ -13,7 +13,7 @@ Viabilidad
 	<div class="selection-container">
         <form class="form form--selection" action="" method="get">
             <h3 class="form__title">Selecciona el vehículo</h3>
-            <select name="selectVehicle" class="form__select form__select--vehicle">
+            <select name="selectVehicleType" class="form__select form__select--vehicle">
                 <option value="0">Selecciona una opción</option>
                 <option value="1">Vehículo eléctrico</option>
                 <option value="2">Vehículo híbrido</option>
@@ -22,30 +22,50 @@ Viabilidad
         </form>
 	</div>
     {% if option and option != '0' %}
-    <div class="calculation-container">
-        <form class="form form--calculation form--electricVehicle" action="" method="post">
+    <div class="data-container">
+        <form class="form form--vehicle-data" action="" method="post">
             {% csrf_token %}
             {% if option == '1' %}
             <h3 class="form__title">Vehículo Eléctrico</h3>
+
+            <select class="form__list" id="vehicleList">
+                <option value="0">Manual</option>
+                <option value="1">Serena</option>
+                <option value="2">Renault ZOE</option>
+                <option value="3">Renault Kangoo</option>
+                <option value="4">Twizy</option>
+                <option value="5">Nissan Leaf</option>
+                <option value="6">Zhidou D2S</option>
+            </select>
             {% else %}
-            <h3 class="form__title">Vehículo Híbrido</h3>
+            <h3 class="form__vehicle-selection">Vehículo Híbrido</h3>
+
+            <select class="form__list" id="vehicleList">
+                <option value="0">Manual</option>
+                <option value="1">Moto híbrida Energética</option>
+                <option value="2">BYD Qin Plus DM-i</option>
+                <option value="3">Volvo XC60</option>
+                <option value="4">Renault Mégane ST</option>
+                <option value="5">Audi A3</option>
+            </select>
             {% endif %}
+    
 
             <h5 class="form__title">Parámetros para eléctrico</h5>
 
-            <div class="form__input-container">
+            <div class="form__input-container" id="nominalEnergyContainer">
                 <label class="form__indicator" for="nominalEnergyInput">Energía nominal de batería [kWh]</label>
-                <input name="nominalEnergy" id="nominalEnergyInput" class="form__input form__input--nominalEnergy" type="number" step="any" required>
+                <input name="nominalEnergy" id="nominalEnergyInput" class="form__input" type="number" step="any" required>
             </div>
-            <div class="form__input-container">
+            <div class="form__input-container" id="nominalAutonomyContainer">
                 <label class="form__indicator" for="nominalAutonomyInput">Autonomía nominal [km]</label>
                 <input name="nominalAutonomy" id="nominalAutonomyInput" class="form__input" type="number" step="any" required>
             </div>
-            <div class="form__input-container">
+            <div class="form__input-container" id="chargingPowerContainer">
                 <label class="form__indicator" for="chargingPowerInput">Potencia de carga [kW]</label>
                 <input name="chargingPower" id="chargingPowerInput" class="form__input" type="number" step="any" required>
             </div>
-            <div class="form__input-container">
+            <div class="form__input-container" id="chargingTimeContainer">
                 <label class="form__indicator" for="chargingTimeInput">Tiempo de carga [h]</label>
                 <input name="chargingTime" id="chargingTimeInput" class="form__input" type="number" step="any" required>
             </div>
@@ -55,7 +75,10 @@ Viabilidad
 
             <div class="form__input-container">
                 <label class="form__indicator" for="fuelGallonCostInput">Costo galón de combustible [$/gl]</label>
-                <input name="fuelGallonCost" id="fuelGallonCostInput" class="form__input" type="number" step="any" required>
+                <div class="form__icon-container">
+                    <a href="https://es.globalpetrolprices.com/Colombia/gasoline_prices/" target="_blank"><img class="form__icon" src="{% static 'viability/media/info.png' %}"></a>
+                </div>
+                <input name="fuelGallonCost" id="fuelGallonCostInput" class="form__input form__input--fuelGallonCostInput" type="number" step="any" required>
             </div>
 
             {% else %}
@@ -63,7 +86,10 @@ Viabilidad
 
             <div class="form__input-container">
                 <label class="form__indicator" for="fuelGallonCostInput">Costo galón de combustible [$/gl]</label>
-                <input name="fuelGallonCost" id="fuelGallonCostInput" class="form__input" type="number" step="any" required>
+                <div class="form__icon-container">
+                    <a href="https://es.globalpetrolprices.com/Colombia/gasoline_prices/" target="_blank"><img class="form__icon" src="{% static 'viability/media/info.png' %}"></a>
+                </div>
+                <input name="fuelGallonCost" id="fuelGallonCostInput" class="form__input form__input--fuelGallonCostInput" type="number" step="any" required>
             </div>
             <div class="form__input-container">
                 <label class="form__indicator" for="fuelGallonAutonomyInput">Autonomía de combustible [km]</label>
@@ -83,15 +109,14 @@ Viabilidad
             </div>
             <div class="form__input-container">
                 <label class="form__indicator" for="energyRateInput">Tarifa unitaria de energía [$/kWh]</label>
-                <input name="energyRate" id="energyRateInput" class="form__input" type="number" step="any" required>
+                <div class="form__icon-container">
+                    <a href="https://cu.epm.com.co/clientesyusuarios/energia/tarifas-energia" target="_blank"><img class="form__icon" src="{% static 'viability/media/info.png' %}"></a>
+                </div>
+                <input name="energyRate" id="energyRateInput" class="form__input form__input--energyRateInput" type="number" step="any" required>
             </div>
             <div class="form__input-container">
                 <label class="form__indicator" for="tripsPerMonthInput">Cantidad de viajes al mes</label>
                 <input name="tripsPerMonth" id="tripsPerMonthInput" class="form__input" type="number" required>
-            </div>
-            <div class="form__input-container">
-                <label class="form__indicator" for="annualInflationRateInput">Tasa de inflación anual [%]</label>
-                <input name="annualInflationRate" id="annualInflationRateInput" class="form__input" type="number" step="any" required>
             </div>
             <div class="form__input-container">
                 <label class="form__indicator" for="amountVehiclesInput">Cantidad de vehículos a proyectar</label>
@@ -124,16 +149,27 @@ Viabilidad
         </form>
     </div>
     {% endif %}
-    {% if resList %}
-        <div class="results-container">   
-            <h3 class="results-container__title">Resultados</h3>
-            {% for res in resList %}
-            <div class="results-container__infoRes-container">
-                <p class="results-container__dataName">{{res.dataName}}</p>
-                <p class="results-container__value">{{res.value}}</p>
+    {% if res_list %}
+    <div class="results-container">
+        <h3 class="results-container__title">Resultados</h3>
+        {% for res_set in res_list %}
+        <div class="results-box">
+            <h4 class="results-box__title">{{res_set.title}}</h4>
+            {% for res in res_set.results %}
+            <div class="results-box__info">
+                <p class="results-box__name">{{res.name}}</p>
+                <p class="results-box__value">{{res.value}}</p>
             </div>
             {% endfor %}
         </div>
+        {% endfor %}
+        <div class="graphic-container">
+            <img class="graphic-container__image" src="{% static 'viability/media/costos.png' %}">
+        </div>
+    </div>
     {% endif %}
 </div>
+{% endblock %}
+{% block scripts %}
+<script src="{% static 'viability/script.js' %}"></script>
 {% endblock %}

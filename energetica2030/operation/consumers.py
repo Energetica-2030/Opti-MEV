@@ -1648,7 +1648,7 @@ class SincelejoTrip():
 class mapConsumer(WebsocketConsumer):
 
     def simulationMagangue(self, step, m_list, ch_ship, route):
-        magTrip = MagangueTrip()
+        mag_trip = MagangueTrip()
         step = step
         #traci.start(["sumo-gui", "-c", UTILS_PATH+"Magangue/osm1.sumocfg", "--start"])
         traci.start(["sumo","-c", UTILS_PATH+"Magangue/osm1.sumocfg", "--quit-on-end"])
@@ -1664,30 +1664,30 @@ class mapConsumer(WebsocketConsumer):
         shipNumber = [10,0,0,0]
         stat_charship = ["s1", "s2","s3","s4"]
 
-        magTrip.startparking(parkingID, motoNumber)
-        magTrip.startparkingship(parkingIDship, shipNumber)
+        mag_trip.startparking(parkingID, motoNumber)
+        mag_trip.startparkingship(parkingIDship, shipNumber)
 
         for i in range(len(new_list_ship)):
             ship_id = "ship_" + str(i)
-            shipOBJ_dic[ship_id] = magTrip.ship(ship_id, "s1")
+            shipOBJ_dic[ship_id] = mag_trip.ship(ship_id, "s1")
         for i in range(len(new_list)):
             moto_id = "moto_" + str(i)
             if i <= motoNumber[0]-1:
-                motOBJ_dic[moto_id] = magTrip.moto(moto_id, "m1")
+                motOBJ_dic[moto_id] = mag_trip.moto(moto_id, "m1")
             if i >= motoNumber[0] and i <= motoNumber[1]+motoNumber[0]-1:
-                motOBJ_dic[moto_id] = magTrip.moto(moto_id, "m2")
+                motOBJ_dic[moto_id] = mag_trip.moto(moto_id, "m2")
         for i in range(len(parkingID)):
             prk_id = "m" + str(i+1)
-            parkOBJ_dic[prk_id] = magTrip.pconcent(prk_id)
+            parkOBJ_dic[prk_id] = mag_trip.pconcent(prk_id)
         for i in range(len(stat_char)):
             stat_id = "m" + str(i+3)
-            statOBJ_dic[stat_id] = magTrip.stat_charg(stat_id)
+            statOBJ_dic[stat_id] = mag_trip.stat_charg(stat_id)
         for i in range(len(stat_charship)):
             stat_id = "s" + str(i+1)
-            stat_ship_OBJ_dic[stat_id] = magTrip.stat_charg_ship(stat_id)
+            stat_ship_OBJ_dic[stat_id] = mag_trip.stat_charg_ship(stat_id)
         for i in range(len(parkingIDship)):
             prkship_id = "s" + str(i+1)
-            parkshipOBJ_dic[prkship_id] = magTrip.pshipconcent(prkship_id)
+            parkshipOBJ_dic[prkship_id] = mag_trip.pshipconcent(prkship_id)
 
         or_m = ['-114907924#3','-102276174#3','399732226#2','399732222#3','-114907908#4']
         des_m = ['-372051587#0','400299306#10','400299309#4','806220445#0','117572522#0']
@@ -2023,11 +2023,11 @@ class mapConsumer(WebsocketConsumer):
             }))
 
         a=1
-        magTrip.operationGraphics()
+        mag_trip.operationGraphics()
         traci.close()
 
     def simulationSincelejo(self, step, m_list, route):
-        sinTrip = SincelejoTrip()
+        sin_trip = SincelejoTrip()
         step = step
         #traci.start(["sumo-gui", "-c",UTILS_PATH+"Sincelejo/sincel.sumocfg", "--quit-on-end"])
         traci.start(["sumo","-c", UTILS_PATH+"Sincelejo/sincel.sumocfg", "--quit-on-end"])
@@ -2037,21 +2037,21 @@ class mapConsumer(WebsocketConsumer):
         stat_char_1 = ['295445871#1']
         stat_char = ["m3"]
 
-        sinTrip.startparking(parkingID, motoNumber)
+        sin_trip.startparking(parkingID, motoNumber)
 
 
         for i in range(len(new_list)):
             moto_id = "moto_" + str(i)
             if i <= motoNumber[0]-1:
-                motOBJ_dic[moto_id] = sinTrip.moto(moto_id, "m1")
+                motOBJ_dic[moto_id] = sin_trip.moto(moto_id, "m1")
             if i >= motoNumber[0] and i <= motoNumber[1]+motoNumber[0]-1:
-                motOBJ_dic[moto_id] = sinTrip.moto(moto_id, "m2")
+                motOBJ_dic[moto_id] = sin_trip.moto(moto_id, "m2")
         for i in range(len(parkingID)):
             prk_id = "m" + str(i+1)
-            parkOBJ_dic[prk_id] = sinTrip.pconcent(prk_id)
+            parkOBJ_dic[prk_id] = sin_trip.pconcent(prk_id)
         for i in range(len(stat_char)):
             stat_id = "m" + str(i+3)
-            statOBJ_dic[stat_id] = sinTrip.stat_charg(stat_id)
+            statOBJ_dic[stat_id] = sin_trip.stat_charg(stat_id)
 
         # Universidad de Sucre - Terminales de transporte [89143440#5 , 323063346#13]
         # Terminal de transportes - Parque Santander [323063346#13, 295522603#2]
@@ -2311,7 +2311,7 @@ class mapConsumer(WebsocketConsumer):
                 'finished':False
             }))
         a=1
-        sinTrip.operationGraphics()
+        sin_trip.operationGraphics()
         traci.close()
     
     def connect(self):

@@ -17,6 +17,7 @@ from os.path import join
 BASE_DIR = Path(__file__).resolve().parent.parent
 UTILS_PATH = join(BASE_DIR, 'operation/utils/')
 STATIC_OPERATION_PATH = join(BASE_DIR, 'operation/static/operation/')
+STATIC_VIABILITY_PATH = join(BASE_DIR, 'viability/static/viability/')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
