@@ -38,11 +38,11 @@ Viabilidad
                 <option value="6">Zhidou D2S</option>
             </select>
             {% else %}
-            <h3 class="form__vehicle-selection">Vehículo Híbrido</h3>
+            <h3 class="form__title">Vehículo Híbrido</h3>
 
             <select class="form__list" id="vehicleList">
                 <option value="0">Manual</option>
-                <option value="1">Moto híbrida Energética</option>
+                <option value="1">Moto Híbrida Energética</option>
                 <option value="2">BYD Qin Plus DM-i</option>
                 <option value="3">Volvo XC60</option>
                 <option value="4">Renault Mégane ST</option>
@@ -92,12 +92,12 @@ Viabilidad
                 <input name="fuelGallonCost" id="fuelGallonCostInput" class="form__input form__input--fuelGallonCostInput" type="number" step="any" required>
             </div>
             <div class="form__input-container">
-                <label class="form__indicator" for="fuelGallonAutonomyInput">Autonomía de combustible [km]</label>
-                <input name="fuelGallonAutonomy" id="fuelGallonAutonomyInput" class="form__input" type="number" step="any" required>
+                <label class="form__indicator" for="fuelAutonomyInput">Autonomía de combustible [km]</label>
+                <input name="fuelAutonomy" id="fuelAutonomyInput" class="form__input" type="number" step="any" required>
             </div>
             <div class="form__input-container">
-                <label class="form__indicator" for="fuelTankCapacityInput">Capacidad del tanque [gl]</label>
-                <input name="fuelTankCapacity" id="fuelTankCapacityInput" class="form__input" type="number" step="any" required>
+                <label class="form__indicator" for="tankCapacityInput">Capacidad del tanque [gl]</label>
+                <input name="tankCapacity" id="tankCapacityInput" class="form__input" type="number" step="any" required>
             </div>
             {% endif %}
 

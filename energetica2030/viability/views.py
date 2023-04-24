@@ -1,5 +1,8 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
+from django.http import JsonResponse
+
+from .models import Vehicle
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -89,8 +92,8 @@ def Iniciales_combustion (request, Consumo_energia_electrico):
         Consumo_combustible = Consumo_energia_comb / 33.7
         Rendimiento = 1 / Consumo_combustible
     else:
-        Autonomia_comb = float(request.POST["fuelGallonAutonomy"])
-        Tanque = float(request.POST["fuelTankCapacity"])
+        Autonomia_comb = float(request.POST["fuelAutonomy"])
+        Tanque = float(request.POST["tankCapacity"])
 
         Rendimiento = Autonomia_comb / Tanque
         Consumo_combustible = 1 / Rendimiento
@@ -331,8 +334,21 @@ def viabilityGraphics(Costo_total_viaje, Costo_total_mensual, Costo_total_anual,
     ax.legend()
     
     for i in ind:
-        plt.text(i-space, y1[i]+50000, int(y1[i]), ha='center', va='bottom', fontsize=7)
-        plt.text(i+width+space, y2[i]+50000, int(y2[i]), ha='center', va='bottom', fontsize=7)
+        plt.text(i-space, y1[i]+10000, int(y1[i]), ha='center', va='bottom', fontsize=7)
+        plt.text(i+width+space, y2[i]+10000, int(y2[i]), ha='center', va='bottom', fontsize=7)
     
     plt.subplots_adjust(left=0.15, right=0.93)
     plt.savefig(STATIC_VIABILITY_PATH+'media/costos.png')
+
+@login_required(login_url='/logIn/')
+def getVehicleData(request, name):
+    vehicle = Vehicle.objects.get(name=name)
+    json = {
+        'nominal_energy':vehicle.nominal_energy,
+        'nominal_autonomy':vehicle.nominal_autonomy,
+        'charging_power':vehicle.charging_power,
+        'charging_time':vehicle.charging_time,
+        'fuel_autonomy':vehicle.fuel_autonomy,
+        'tank_capacity':vehicle.tank_capacity
+    }
+    return JsonResponse(json)
